@@ -1,0 +1,22 @@
+# Changes here will be overwritten by Copier
+AddAllcontributors: true
+AddCodeOfConduct: true
+AddContributionDocs: true
+AddCopierCI: true
+AddGitHubTemplates: true
+AddMacToCI: true
+AddPrecommit: true
+AddWinToCI: true
+AnswerStrategy: ask
+AuthorEmail: linziyang233@163.com
+AuthorName: linziyang
+Indentation: 4
+JuliaMinVersion: '1.8'
+License: MIT
+PackageName: MetJl
+PackageOwner: linbuer233
+PackageUUID: ae51599a-cf74-5024-b3c4-c176a83403a4
+RunJuliaNightlyOnCI: true
+UseCirrusCI: true
+_commit: v0.9.1
+_src_path: https://github.com/abelsiqueira/BestieTemplate.jl
