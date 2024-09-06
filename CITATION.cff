@@ -1,4 +1,6 @@
-# Go to https://citation-file-format.github.io/cff-initializer-javascript/#/ to finish this
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
 cff-version: 1.2.0
 title: MetJl.jl
 message: >-
@@ -8,3 +10,8 @@ type: software
 authors:
   - given-names: linziyang
     email: linziyang233@163.com
+url: 'https://linbuer233.github.io/MetJl.jl/dev/'
+abstract: Calculation of meteorological physical quantities
+keywords:
+  - Calculation of meteorological physical quantities
+license: MIT
