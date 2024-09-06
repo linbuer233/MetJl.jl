@@ -8,4 +8,8 @@ function hello_world()
     return "Hello, World!"
 end
 
+function compute(num)
+    return num * num
+end
+
 end
