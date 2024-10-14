@@ -15,6 +15,10 @@ end
 T  在函数里转换单位
 """
 # dewpoint
+"""
+function dewpoint(e_s::Unitful.Pressure)
+    logval = log10.(ustrip.(e_s) ./ 6.112)
+"""
 function dewpoint_from_rh(T_air::Unitful.Temperature, RH::Real)
     T_air = uconvert(u"°C", T_air)
     T_air = ustrip(T_air)
