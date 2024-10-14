@@ -14,8 +14,13 @@ end
 
 # dewpoint
 """
-function dewpoint(e_s::Unitful.Pressure)
-    logval = log10.(ustrip.(e_s) ./ 6.112)
+calculates the dewPoint
+# Arguments:
+# T_air - temperature of the air [°C or K]
+# RH - relative humidity [%]
+#
+# Returns:
+# dewpoint - dewpoint temperature [°C or K]
 """
 function dewpoint_from_rh(T_air::Unitful.Temperature, RH::Real)
     T_air = uconvert(u"°C", T_air)
@@ -56,8 +61,27 @@ function vapor_pressure_from_dewpoint(dewPoint)
     return vapor_pressure
 end
 
+function theta(T_air, Pressure)
+    T_air = ustrip(uconvert(u"K", T_air))
+    Pressure = ustrip(uconvert(u"hPa", Pressure))
+    return T_air .* (1000 ./ Pressure) .^ (0.286) .* u"K"
+end
 
 
+# height and pressure values
+function add_height_to_pressure(pressure, height)
+    pressure = uconvert.(u"hPa", pressure)
+    height = uconvert.(u"m", height)
+    pressure_level_height = basefun.pressure_to_height_std.(pressure)
+    return basefun.height_to_pressure_std(pressure_level_height .+ height)
+end
+
+function add_pressure_to_height(height, pressure)
+    height = uconvert.(u"m", height)
+    pressure = uconvert.(u"hPa", pressure)
+    height_level_pressure = basefun.height_to_pressure_std.(height)
+    return basefun.pressure_to_height_std(height_level_pressure .- pressure)
+end
 
 # wind_chill_index
 function wind_chill_index(wind_speed, T_air)
