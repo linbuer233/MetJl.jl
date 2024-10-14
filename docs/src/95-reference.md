@@ -13,5 +13,9 @@ Pages = ["95-reference.md"]
 ```
 
 ```@autodocs
-Modules = [MetJl,calc]
+Modules = [MetJl]
+```
+
+```@autodocs
+Modules = [calc]
 ```

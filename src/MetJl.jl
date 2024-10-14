@@ -10,6 +10,10 @@ function hello_world()
     return "Hello, World!"
 end
 
+"""
+hi = hello_world()
+A simple function to return "Hello, World!"
+"""
 function compute(num)
     return num * num
 end

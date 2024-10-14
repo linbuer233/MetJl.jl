@@ -1,7 +1,6 @@
 module calc
-"""
-Provides tools for calculating meteorological elements
-"""
+# Provides tools for calculating meteorological elements
+
 
 include("basefun.jl")
 using Unitful
@@ -11,9 +10,8 @@ function c(num::typeof(1u"m/s"))
     return num
 end
 
-"""
-T  在函数里转换单位
-"""
+# T  在函数里转换单位
+
 # dewpoint
 """
 function dewpoint(e_s::Unitful.Pressure)
