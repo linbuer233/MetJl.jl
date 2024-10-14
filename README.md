@@ -16,7 +16,7 @@ MetJl.jl is a Julia language package that provides calculation functions commonl
 
 ## Installation
 
-To install MetPyCalc.jl, you need to use Julia's package manager. Enter the following command at the Julia command line:
+To install MetJl.jl, you need to use Julia's package manager. Enter the following command at the Julia command line:
 
 ```julia
 pkg> add MetJl
@@ -24,7 +24,7 @@ pkg> add MetJl
 
 ## Features
 
-MetJl.jl MetPyCalc.jl provides the following functionality:
+MetJl.jl provides the following functionality:
 
 - Calculate dew point temperature
 - Calculate relative humidity
@@ -36,7 +36,7 @@ MetJl.jl MetPyCalc.jl provides the following functionality:
 
 ## How to Cite
 
-If you use MetJl.jl in your work, please cite using the reference given in [CITATION.cff](https://github.com/linbuer233/MetJl.jl/CITATION.cff).
+If you use MetJl.jl in your work, please cite using the reference given in [CITATION.cff](https://github.com/linbuer233/MetJl.jl/blob/main/CITATION.cff).
 
 ## Contributing
 
