@@ -12,13 +12,44 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![All Contributors](https://img.shields.io/github/all-contributors/linbuer233/MetJl.jl?labelColor=5e1ec7&color=c0ffee&style=flat-square)](#contributors)
 
+MetJl.jl is a Julia language package that provides calculation functions commonly used in meteorology. It is inspired by the calc module in Python's MetPy library. This package aims to provide Julia users with a convenient and efficient tool for processing meteorological data.
+
+## Installation
+
+To install MetPyCalc.jl, you need to use Julia's package manager. Enter the following command at the Julia command line:
+
+```julia
+pkg> add MetJl
+```
+
+## Features
+
+MetJl.jl MetPyCalc.jl provides the following functionality:
+
+- Calculate dew point temperature
+- Calculate relative humidity
+- Calculate potential temperature
+- Calculate density height
+- and other weather-related calculations
+
+## Usage
+
 ## How to Cite
 
-If you use MetJl.jl in your work, please cite using the reference given in [CITATION.cff](https://github.com/linbuer233/MetJl.jl/blob/main/CITATION.cff).
+If you use MetJl.jl in your work, please cite using the reference given in [CITATION.cff](https://github.com/linbuer233/MetJl.jl/CITATION.cff).
 
 ## Contributing
 
 If you want to make contributions of any kind, please first that a look into our [contributing guide directly on GitHub](docs/src/90-contributing.md) or the [contributing page on the website](https://linbuer233.github.io/MetJl.jl/dev/90-contributing/).
+
+## Contact
+
+If you have any questions or need help, you can contact us by:
+
+- mail: <linziyang233@163.com>
+- project: [MetJl.jl](https://github.com/linbuer233/MetJl.jl)
+
+Thanks for using MetJl.jl
 
 ---
 
