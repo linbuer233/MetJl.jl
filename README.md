@@ -99,3 +99,31 @@ Thanks for using MetJl.jl
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+---
+
+### Special Thanks
+
+Our project stands on the shoulders of giants. We are grateful to the open source community for the tools, libraries, and frameworks that have made our work easier and more efficient.
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+    <tbody>
+        <tr>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://abelsiqueira.com">
+                    <img src="https://avatars.githubusercontent.com/u/1068752?v=4?s=100" width="100px;"
+                        alt="Abel Soares Siqueira" />
+                    <br />
+                    <sub><b>Abel Soares Siqueira</b>
+                    </sub>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
