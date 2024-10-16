@@ -1,14 +1,8 @@
 module calc
 # Provides tools for calculating meteorological elements
 
-
 include("basefun.jl")
 using Unitful
-
-export c
-function c(num::typeof(1u"m/s"))
-    return num
-end
 
 # T  在函数里转换单位
 
@@ -35,8 +29,17 @@ function dewpoint_from_rh(T_air::Unitful.Temperature, RH::Real)
     end
     return uconvert.(u"K", T_air * u"°C")
 end
+
 function dewpoint_from_rh(T_air, RH)
     dewpoint_from_rh.(T_air, RH)
+end
+
+function rh_from_dewpont(T_air, dewpoint)
+    T_air = uconvert.(u"°C", T_air)
+    dewpoint = uconvert.(u"°C", dewpoint)
+    e = vapor_pressure_from_dewpoint.(dewpoint)
+    e_s = vapor_pressure_from_dewpoint.(T_air)
+    return e ./ e_s
 end
 
 function dewpoint_from_sh(pressure, q)
@@ -57,8 +60,51 @@ end
 function vapor_pressure_from_dewpoint(dewPoint)
     dewPoint = uconvert.(u"°C", dewPoint)
     logvalue = (7.5 .* ustrip(dewPoint)) ./ (237.3 .+ ustrip(dewPoint))
-    vapor_pressure = 6.112 .* [10] .^ logvalue .* u"hPa"
+    vapor_pressure = 6.112 .* (10) .^ logvalue .* u"hPa"
     return vapor_pressure
+end
+
+function q_from_dewpoint(pressure, dewpoint)
+    pressure = uconvert.(u"hPa", pressure)
+    dewpoint = uconvert.(u"K", dewpoint)
+    e = vapor_pressure_from_dewpoint.(dewpoint)
+    return 0.622 .* e ./ (pressure .- 0.378 .* e)
+end
+
+function q_from_vapor_pressure(pressure, vapor_pressure)
+    pressure = uconvert.(u"hPa", pressure)
+    vapor_pressure = uconvert.(u"hPa", vapor_pressure)
+    e = vapor_pressure
+    return 0.622 .* e ./ (pressure .- 0.378 .* e)
+end
+
+function LCL(
+    pressure::Unitful.Pressure,
+    T_air::Unitful.Temperature,
+    dewpoint::Unitful.Temperature,
+)
+    pressure = uconvert.(u"hPa", pressure)
+    T_air = uconvert.(u"K", T_air)
+    dewpoint = uconvert.(u"K", dewpoint)
+    e_z = vapor_pressure_from_dewpoint.(dewpoint)
+    θ = theta.(T_air, pressure)
+    q_z = q_from_vapor_pressure(pressure, e_z)
+    P_L = 300 * u"hPa"
+    local T_L = 1
+    while true
+        T_L = θ .* (P_L ./ (1000 * u"hPa")) .^ 0.286
+        e_L = vapor_pressure_from_dewpoint.(T_L)
+        q_L = q_from_vapor_pressure.(P_L, e_L)
+        if q_L >= q_z
+            break
+        end
+        P_L += 1 * u"hPa"
+    end
+    return T_L, P_L
+end
+
+function LCL(pressure, T_air, dewpoint)
+    return LCL.(pressure, T_air, dewpoint)
 end
 
 function theta(T_air, Pressure)
@@ -66,7 +112,6 @@ function theta(T_air, Pressure)
     Pressure = ustrip(uconvert(u"hPa", Pressure))
     return T_air .* (1000 ./ Pressure) .^ (0.286) .* u"K"
 end
-
 
 # height and pressure values
 function add_height_to_pressure(pressure, height)
