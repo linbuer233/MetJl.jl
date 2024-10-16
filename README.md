@@ -78,7 +78,7 @@ Thanks for using MetJl.jl
                 <a href="#review-tmigot" title="Reviewed Pull Requests">👀</a>
             </td>
             <td align="center" valign="top" width="14.28%">
-                <a href="http://wzzcharles.github.io">
+                <a href="https://github.com/wzzcharles">
                     <img src="https://avatars.githubusercontent.com/u/102020995?v=4?s=100" width="100px;"
                         alt="wzzcharles" />
                     <br />
