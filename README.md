@@ -8,7 +8,7 @@
 [![Docs workflow Status](https://github.com/linbuer233/MetJl.jl/actions/workflows/Docs.yml/badge.svg?branch=main)](https://github.com/linbuer233/MetJl.jl/actions/workflows/Docs.yml?query=branch%3Amain)
 [![Build Status](https://api.cirrus-ci.com/github/linbuer233/MetJl.jl.svg)](https://cirrus-ci.com/github/linbuer233/MetJl.jl)
 [![Coverage](https://codecov.io/gh/linbuer233/MetJl.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/linbuer233/MetJl.jl)
-[![DOI](https://zenodo.org/badge/DOI/FIXME)](https://doi.org/FIXME)
+[![DOI](https://zenodo.org/badge/852891568.svg)](https://doi.org/10.5281/zenodo.13956120)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![All Contributors](https://img.shields.io/github/all-contributors/linbuer233/MetJl.jl?labelColor=5e1ec7&color=c0ffee&style=flat-square)](#contributors)
 
