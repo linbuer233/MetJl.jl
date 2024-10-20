@@ -26,7 +26,7 @@ pkg> add MetJl
 
 MetJl.jl provides the following functionality:
 
-- Calculate dew point temperature
+- Calculate dewpoint temperature
 - Calculate relative humidity
 - Calculate potential temperature
 - Calculate density height

@@ -345,6 +345,7 @@ Example:
 ```julia
 julia> calc.add_height_to_pressure(1000u"hPa",800u"m")
 908.303207892483 hPa
+```
 """
 function add_height_to_pressure(pressure, height)
     pressure = uconvert.(u"hPa", pressure)
@@ -405,6 +406,7 @@ Example:
 ```julia
 julia> calc.wind_chill_index(20u"m/s", 290u"K")
 568.824956732432 cal kg m⁻² s⁻¹
+```
 """
 function wind_chill_index(wind_speed, T_air)
     wind_speed = ustrip(uconvert.(u"m/s", wind_speed))
