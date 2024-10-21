@@ -48,7 +48,7 @@ If you have any questions or need help, you can contact us by:
 - mail: <linziyang233@163.com>
 - project: [MetJl.jl](https://github.com/linbuer233/MetJl.jl)
 
-**Thanks for using MetJl.jl**
+Thanks for using MetJl.jl
 
 ---
 

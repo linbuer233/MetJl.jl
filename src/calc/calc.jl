@@ -4,8 +4,6 @@ module calc
 include("basefun.jl")
 using Unitful
 
-# T  在函数里转换单位
-
 # dewpoint
 """
 dewpoint(vapor_pressure)
@@ -319,8 +317,8 @@ julia> calc.theta(25u"°C", 800u"hPa")
 ```
 """
 function theta(T_air, Pressure)
-    T_air = ustrip(uconvert(u"K", T_air))
-    Pressure = ustrip(uconvert(u"hPa", Pressure))
+    T_air = ustrip.(uconvert.(u"K", T_air))
+    Pressure = ustrip.(uconvert.(u"hPa", Pressure))
     return T_air .* (1000 ./ Pressure) .^ (0.286) .* u"K"
 end
 
@@ -351,7 +349,7 @@ function add_height_to_pressure(pressure, height)
     pressure = uconvert.(u"hPa", pressure)
     height = uconvert.(u"m", height)
     pressure_level_height = basefun.pressure_to_height_std.(pressure)
-    return basefun.height_to_pressure_std(pressure_level_height .+ height)
+    return basefun.height_to_pressure_std.(pressure_level_height .+ height)
 end
 
 """
@@ -380,7 +378,7 @@ function add_pressure_to_height(height, pressure)
     height = uconvert.(u"m", height)
     pressure = uconvert.(u"hPa", pressure)
     height_level_pressure = basefun.height_to_pressure_std.(height)
-    return basefun.pressure_to_height_std(height_level_pressure .- pressure)
+    return basefun.pressure_to_height_std.(height_level_pressure .- pressure)
 end
 
 # wind_chill_index
@@ -409,11 +407,70 @@ julia> calc.wind_chill_index(20u"m/s", 290u"K")
 ```
 """
 function wind_chill_index(wind_speed, T_air)
-    wind_speed = ustrip(uconvert.(u"m/s", wind_speed))
-    T_air = ustrip(uconvert.(u"°C", T_air))
+    wind_speed = ustrip.(uconvert.(u"m/s", wind_speed))
+    T_air = ustrip.(uconvert.(u"°C", T_air))
     WCI_up = (10 .* sqrt.(wind_speed) .- wind_speed .+ 10.5)
     WCI_down = (33 .- T_air)
     return (WCI_up .* WCI_down) * u"kg*cal/m^2/s"
 end
+
+"""
+cape_cin(T_air, dewpoint, pressure, T_stra)
+"""
+function cape_cin(
+    T_air::typeof([300, 300, 300, 300] * u"K"),
+    dewpoint::typeof([300, 300, 300, 300] * u"K"),
+    pressure::typeof([1000, 900, 800, 700] * u"hPa"),
+    T_parcel_profile::typeof([300, 300, 300, 300] * u"K"),
+)
+    # Calculate parcel's profile
+end
+
+"""
+TODO 计算层结曲线
+"""
+function parcel_profile(
+    pressure::typeof([1000, 900, 800, 700] * u"hPa"),
+    T_start::Unitful.Temperature,
+    dewpoint_start::Unitful.Temperature,
+)
+
+end
+
+"""
+downdraft_cape
+"""
+function dcape()
+
+end
+
+"""
+涡度
+"""
+function vo()
+
+end
+
+"""
+散度
+"""
+function div()
+
+end
+
+"""
+垂直风切
+"""
+function bulk_shear()
+
+end
+
+"""
+垂直速度
+"""
+function w_speed()
+
+end
+
 
 end

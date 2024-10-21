@@ -1,7 +1,7 @@
 name = "MetJl"
 uuid = "ae51599a-cf74-5024-b3c4-c176a83403a4"
 authors = ["linziyang <linziyang233@163.com> and contributors"]
-version = "0.1.0"
+version = "0.0.1"
 
 [deps]
 Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
