@@ -1,5 +1,4 @@
-# MetJl
-
+![MetJl.jl](/logo.png)
 [![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://linbuer233.github.io/MetJl.jl/stable)
 [![In development documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://linbuer233.github.io/MetJl.jl/dev)
 [![Build Status](https://github.com/linbuer233/MetJl.jl/workflows/Test/badge.svg)](https://github.com/linbuer233/MetJl.jl/actions)

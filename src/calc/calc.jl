@@ -461,14 +461,19 @@ end
 """
 垂直风切
 """
-function bulk_shear()
-
+function vertical_wind_shear(down_winds_u, down_winds_v, up_winds_u, up_winds_v)
+    down_winds_u = ustrip.(uconvert.(u"m/s", down_winds_u))
+    down_winds_v = ustrip.(uconvert.(u"m/s", down_winds_v))
+    up_winds_u = ustrip.(uconvert.(u"m/s", up_winds_u))
+    up_winds_v = ustrip.(uconvert.(u"m/s", up_winds_v))
+    return sqrt.((up_winds_u - down_winds_u) .^ 2 .+ (up_winds_v .- down_winds_v) .^ 2) .*
+           u"m/s"
 end
 
 """
 垂直速度
 """
-function w_speed()
+function vertical_speed()
 
 end
 
