@@ -69,11 +69,11 @@ Thanks for using MetJl.jl
                     </sub>
                 </a>
                 <br />
-                <a href="#code-abelsiqueira" title="Code">💻</a>
-                <a href="#projectManagement-abelsiqueira" title="Project Management">📆</a>
-                <a href="#doc-abelsiqueira" title="Documentation">📖</a>
-                <a href="#maintenance-abelsiqueira" title="Maintenance">🚧</a>
-                <a href="#review-tmigot" title="Reviewed Pull Requests">👀</a>
+                <a href="#code-linbuer233" title="Code">💻</a>
+                <a href="#projectManagement-linbuer233" title="Project Management">📆</a>
+                <a href="#doc-linbuer233" title="Documentation">📖</a>
+                <a href="#maintenance-linbuer233" title="Maintenance">🚧</a>
+                <a href="#review-linbuer233" title="Reviewed Pull Requests">👀</a>
             </td>
             <td align="center" valign="top" width="14.28%">
                 <a href="https://github.com/wzzcharles">
@@ -85,10 +85,10 @@ Thanks for using MetJl.jl
                     </sub>
                 </a>
                 <br />
-                <a href="#code-tmigot" title="Code">💻</a>
-                <a href="#doc-tmigot" title="Documentation">📖</a>
-                <a href="#review-tmigot" title="Reviewed Pull Requests">👀</a>
-                <a href="#ideas-oxinabox" title="Ideas, Planning, & Feedback">🤔</a>
+                <a href="#code-wzzcharles" title="Code">💻</a>
+                <a href="#doc-wzzcharles" title="Documentation">📖</a>
+                <a href="#review-wzzcharles" title="Reviewed Pull Requests">👀</a>
+                <a href="#ideas-wzzcharles" title="Ideas, Planning, & Feedback">🤔</a>
             </td>
         </tr>
     </tbody>
