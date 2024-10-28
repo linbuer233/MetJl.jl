@@ -14,7 +14,12 @@ const Rd = R / Md
 const t0 = 288.15 * u"K"
 const p0 = 1023.5 * u"hPa"
 const Γ = 6.5 * u"K" / u"km"
-
+const L_vaper = 2.5 * 10^6 * u"J/kg"
+const γ_d = 9.8 * u"K" / u"km"
+const ϵ = 0.62197 * u"kg/kg"
+const Cp = 1004 * u"J/kg/K"  #干空气定压比热
+const Cpd = 1005 * u"J/kg/K" # 湿空气定压比热
+const Cw = 4218 * u"J/K/kg"
 
 function height_to_pressure_std(height)
     height = uconvert(u"m", height)

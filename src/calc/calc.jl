@@ -293,7 +293,6 @@ end
 function LCL(pressure, T_air, dewpoint)
     return LCL.(pressure, T_air, dewpoint)
 end
-
 """
     theta(T_air, Pressure)
 
@@ -316,10 +315,27 @@ julia> calc.theta(25u"°C", 800u"hPa")
 317.79793975452117 K
 ```
 """
-function theta(T_air, Pressure)
+function theta(T_air, pressure)
     T_air = ustrip.(uconvert.(u"K", T_air))
-    Pressure = ustrip.(uconvert.(u"hPa", Pressure))
-    return T_air .* (1000 ./ Pressure) .^ (0.286) .* u"K"
+    pressure = ustrip.(uconvert.(u"hPa", pressure))
+    return T_air .* (1000 ./ pressure) .^ (0.286) .* u"K"
+end
+
+"""
+theta_e(T_air,pressure)
+TODO:
+"""
+function theta_e(T_air, dewpoint, pressure)
+    T_air = ustrip.(uconvert.(u"K", T_air))
+    pressure = ustrip.(uconvert.(u"hPa", pressure))
+    dewpoint = ustrip.(uconvert.(u"K", dewpoint))
+    e = vapor_pressure_from_dewpoint.(dewpoint)
+    q = q_from_vapor_pressure(pressure, e)
+    theta_e =
+        T_air *
+        (1000 / (pressure - e))^0.286 *
+        exp(basefun.L_vaper * q / (basefun.Cp * T_air))
+    return theta_e
 end
 
 # height and pressure values
@@ -427,14 +443,62 @@ function cape_cin(
 end
 
 """
-TODO 计算层结曲线
+TODO 计算状态曲线
+p=[1008., 1000., 950., 900., 850., 800.]*u"hPa"
+# calc.parcel_profile(p,(29.3+273.15)u"K",299.67u"K")
+302.45
+301.76221952
+298.37214738
+296.61097684
+294.7335928
+292.72260398
 """
 function parcel_profile(
-    pressure::typeof([1000, 900, 800, 700] * u"hPa"),
+    pressure::typeof([1000, 900.0, 800, 700] * u"hPa"),
     T_start::Unitful.Temperature,
     dewpoint_start::Unitful.Temperature,
 )
-
+    h_0 = basefun.pressure_to_height_std(pressure[1])
+    parcel_profile_T = []
+    # 计算LCL
+    LCL_T, LCL_pressure = LCL(pressure[1], T_start, dewpoint_start)
+    LCL_height = basefun.pressure_to_height_std(LCL_pressure)
+    # 先沿着干绝热线上升至LCL
+    LCL_vp = vapor_pressure_from_dewpoint(dewpoint_start)
+    push!(parcel_profile_T, T_start)
+    for i = 2:length(pressure)
+        Δh = basefun.pressure_to_height_std(pressure[i]) - h_0
+        t_i = T_start - basefun.γ_d * Δh
+        if pressure[i] >= LCL_pressure
+            Δh = basefun.pressure_to_height_std(pressure[i]) - h_0
+            t_i = T_start - basefun.γ_d * uconvert(u"km", Δh)
+            push!(parcel_profile_T, t_i)
+        else
+            p1 = pressure[i-1]
+            T1 = t_i
+            es = vapor_pressure_from_dewpoint(T1)
+            rs = ustrip(basefun.ϵ) * ustrip(es) / (ustrip(pressure[i]) - ustrip(es))
+            Δp = pressure[i] - p1
+            ΔT =
+                (1 / ustrip(p1)) * (
+                    (
+                        ustrip(basefun.Rd) * ustrip(T1) +
+                        ustrip(basefun.L_vaper) * ustrip(rs)
+                    ) / (
+                        (ustrip(basefun.Cpd) - ustrip(basefun.Cw) * ustrip(rs)) +
+                        (ustrip(basefun.L_vaper)^2 * ustrip(rs) * ustrip(basefun.ϵ)) /
+                        (ustrip(basefun.Rd) * ustrip(T1)^2)
+                    )
+                )
+            println("Δp\t", Δp, "\t", ΔT)
+            t_i = ustrip(T1) - ustrip(Δp) * ΔT
+            push!(parcel_profile_T, t_i * u"K")
+        end
+    end
+    return parcel_profile_T
+    # Δh = basefun.pressure_to_height_std(pressure[i]) - LCL_height
+    # Cpd = basefun.Cp + 0.86 * ustrip(LCL_q) * basefun.Cp
+    # t_i = LCL_T - basefun.γ_d * Δh + LCL_q * Δh
 end
 
 """
